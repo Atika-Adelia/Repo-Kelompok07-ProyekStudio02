@@ -1,14 +1,19 @@
 # Studio 2 — Klasifikasi Sampah · Kelompok 07
 
+<p align="center">
+<img src="https://img.shields.io/badge/Google_Colab-20232A?style=for-the-badge&logo=googlecolab&logoColor=F9AB00" alt="Google Colab"/>
+<img src="https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python&logoColor=white"/>
+</p>
+
 Deep Learning (IF25-40401) · Teknik Informatika ITERA · Semester Ganjil 2026/2027
 
 ## Anggota Kelompok
 
 | No |          Nama Lengkap         |   NIM     |  Kontibusi Utama |
-|----|-------------------------------|-----------|  -----------                |
-| 1  | Hildyah Maretasya Araffad     |123140151  |   On Process               |
-| 2  | Firman H Gultom               |123140171  |   On Process              |
-| 3  | Atika Adelia                  |123140172  |   On Process              |
+|----|-------------------------------|-----------|  -----------     |
+| 1  | Hildyah Maretasya Araffad     |123140151  |   On Process     |
+| 2  | Firman H Gultom               |123140171  |   On Process     |
+| 3  | Atika Adelia                  |123140172  |   On Process     |
 
 ## Ringkasan Pendekatan
  
@@ -32,23 +37,14 @@ Deep Learning (IF25-40401) · Teknik Informatika ITERA · Semester Ganjil 2026/2
  
 | Putaran | Macro-F1 (split validasi lokal) | Macro-F1 (diumumkan asisten) |
 |---------|----------------------------------|------------------------------|
-| Preview 1 (14 Okt) |    0,9767 |   |
+| Preview 1 (14 Okt) |    0,9767 | 0,9654 |
+| Preview 2 (21 Okt) |    0,9813 | 0,9705  |
+| Preview 3 (25 Okt) |   ongoing  | ongoing  |
 
  
 Nilai lokal diukur dengan `evaluate.py` pada `my_val/` (413 gambar, split stratified 85/15, `seed=42`), dengan pengaturan submission (224 px + TTA flip).
  
-Detail per kelas (`evaluate.py`, `my_val/`):
- 
-| Kelas         | F1     | Jumlah gambar |
-|---------------|--------|---------------|
-| botol_plastik | 0,9873 | 78            |
-| gelas_plastik | 0,9806 | 78            |
-| kertas_kardus | 0,9558 | 55            |
-| saset_kemasan | 0,9851 | 101           |
-| styrofoam     | 0,9749 | 101           |
-| **Macro-F1**  | **0,9767** |           |
- 
-Catatan eksperimen singkat (apa yang dicoba, apa yang berhasil/gagal):
+Catatan eksperimen singkat (apa yang dicoba, apa yang berhasil/gagal) - **Preview 1** :
  
 - **Split data**: 2.340 gambar untuk train dan 413 untuk validasi lokal (stratified, proporsi kelas terjaga).
 - **Proses training**: Macro-F1 validasi (EMA) naik dari 0,920 pada epoch 1 menjadi 0,972 pada epoch 15 (puncak 0,9737 pada epoch 13–14). Bobot EMA cenderung lebih stabil daripada bobot biasa di epoch-epoch akhir (0,9719 vs 0,9697 pada epoch 15).
@@ -84,13 +80,11 @@ Catatan: `seed=42` dipakai di seluruh pipeline, tetapi `cudnn.benchmark=True` se
 ## Struktur Repositori
  
 ```
-Repo-Kelompok07-ProyekStudio02
-├── 
+Repo-Kelompok07-ProyekStudio02 
 ├── submission/
 │  ├──model.py                    # get_model() dan get_transform()
 │  ├──model.pth                   # state_dict model terbaik 
 │  ├──requirements.txt            # timm==1.0.30
 ├──evaluate.py                    # salinan skrip evaluasi resmi
 ├──Studio2_Kelompok07_RB.ipynb    # notebook pelatihan, ekspor submission, dan self-test
-
 ```
